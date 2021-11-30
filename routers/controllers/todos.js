@@ -27,7 +27,7 @@ const createTodo = (req, res) => {
 const getUserTodos = (req, res) => {
   try {
     todosModel
-      .find({ id: req.token.id, isDel : false })
+      .find({ id: req.token.id, isDel: false })
       .then((result) => {
         res.status(200).json(result);
       })
@@ -54,6 +54,23 @@ const getTodoById = (req, res) => {
       });
   } catch (err) {
     res.status(404).json(err);
+  }
+};
+
+const updateTodo = (req, res) => {
+  try {
+    const { id, newName } = req.body;
+    todosModel
+      .findByIdAndUpdate(id, { name: newName })
+      .then((result) => {
+        if(result) res.status(200).json(result);
+        else res.status(404).json("the todo is not exist")
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  } catch (err) {
+    res.status(400).json(err);
   }
 };
 
@@ -95,6 +112,7 @@ module.exports = {
   createTodo,
   getUserTodos,
   getTodoById,
+  updateTodo,
   deleteTodo,
   getAllTodos,
 };
