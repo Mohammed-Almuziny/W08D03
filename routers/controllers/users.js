@@ -1,6 +1,5 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const users = require("./../../db/models/users");
 require("dotenv").config();
 
 const usersModel = require("./../../db/models/users");
@@ -45,6 +44,7 @@ const logIn = (req, res) => {
           if (savedPassword) {
             const payload = {
               role: result.role,
+              id: result._id,
             };
 
             const options = {
