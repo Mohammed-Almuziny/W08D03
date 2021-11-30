@@ -13,11 +13,13 @@ const authorization = require("./../middlewares/authorization");
 
 const todosRouter = express.Router();
 
-todosRouter.post("/create", authentication, createTodo);
-todosRouter.get("/", authentication, getUserTodos);
-todosRouter.post("/todoById", getTodoById);
-todosRouter.put("/update",authentication, updateTodo);
-todosRouter.delete("/delete/:id", authentication, deleteTodo);
-todosRouter.get("/allTodos", authentication, authorization, getAllTodos);
+todosRouter.post("/create", authentication, createTodo); // create todo tasks.
+todosRouter.get("/", authentication, getUserTodos); //  get todos list to the user.
+todosRouter.post("/todoById", getTodoById); // get todo task by id.
+todosRouter.put("/update", authentication, updateTodo); //  update todo task.
+todosRouter.delete("/delete/:id", authentication, deleteTodo); //  delete todo task.
+
+// require admin account.
+todosRouter.get("/allTodos", authentication, authorization, getAllTodos); // get all todo tasks.
 
 module.exports = todosRouter;
