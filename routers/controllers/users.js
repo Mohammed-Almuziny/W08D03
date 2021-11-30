@@ -79,4 +79,20 @@ const getAllUsers = (req, res) => {
   }
 };
 
-module.exports = { register, logIn, getAllUsers };
+const deleteUser = (req, res) => {
+  try {
+    usersModel
+      .findByIdAndDelete(req.params.id)
+      .then((result) => {
+        if (result) res.status(200).json(result);
+        else res.status(404).json("user dose not exist");
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
+module.exports = { register, logIn, getAllUsers, deleteUser };
