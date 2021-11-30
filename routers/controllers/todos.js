@@ -24,6 +24,24 @@ const createTodo = (req, res) => {
   }
 };
 
+const getTodoById = (req, res) => {
+  try {
+    const { id } = req.body;
+
+    todosModel
+      .findById(id)
+      .then((result) => {
+        if (result) res.status(200).json(result);
+        else res.status(404).json("todos dose not exist");
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  } catch (err) {
+    res.status(404).json(err);
+  }
+};
+
 const getAllTodos = (req, res) => {
   try {
     todosModel
@@ -39,4 +57,4 @@ const getAllTodos = (req, res) => {
   }
 };
 
-module.exports = { createTodo, getAllTodos };
+module.exports = { createTodo, getTodoById, getAllTodos };
