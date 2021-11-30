@@ -24,6 +24,21 @@ const createTodo = (req, res) => {
   }
 };
 
+const getUserTodos = (req, res) => {
+  try {
+    todosModel
+      .find({ id: req.token.id, isDel : false })
+      .then((result) => {
+        res.status(200).json(result);
+      })
+      .catch((error) => {
+        res.status(400).json(error);
+      });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const getTodoById = (req, res) => {
   try {
     const { id } = req.body;
@@ -62,8 +77,9 @@ const deleteTodo = (req, res) => {
 
 const getAllTodos = (req, res) => {
   try {
+    console.log(true);
     todosModel
-      .find()
+      .find({ isDel: false })
       .then((result) => {
         res.status(200).json(result);
       })
@@ -75,4 +91,10 @@ const getAllTodos = (req, res) => {
   }
 };
 
-module.exports = { createTodo, getTodoById, deleteTodo, getAllTodos };
+module.exports = {
+  createTodo,
+  getUserTodos,
+  getTodoById,
+  deleteTodo,
+  getAllTodos,
+};

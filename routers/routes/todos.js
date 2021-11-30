@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   createTodo,
+  getUserTodos,
   getTodoById,
   deleteTodo,
   getAllTodos,
@@ -11,11 +12,8 @@ const authorization = require("./../middlewares/authorization");
 
 const todosRouter = express.Router();
 
-todosRouter.get("/", (req, res) => {
-  res.status(200).json("todos router");
-});
-
 todosRouter.post("/create", authentication, createTodo);
+todosRouter.get("/", authentication, getUserTodos);
 todosRouter.post("/todoById", getTodoById);
 todosRouter.delete("/delete/:id", authentication, deleteTodo);
 todosRouter.get("/allTodos", authentication, authorization, getAllTodos);
