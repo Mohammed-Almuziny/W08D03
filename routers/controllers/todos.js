@@ -42,6 +42,24 @@ const getTodoById = (req, res) => {
   }
 };
 
+const deleteTodo = (req, res) => {
+  try {
+    const { id } = req.params;
+
+    todosModel
+      .findByIdAndUpdate(id, { $set: { isDel: true } })
+      .then((result) => {
+        if (result) res.status(200).json(result);
+        else res.status(404).json("the todo is not exist");
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 const getAllTodos = (req, res) => {
   try {
     todosModel
@@ -57,4 +75,4 @@ const getAllTodos = (req, res) => {
   }
 };
 
-module.exports = { createTodo, getTodoById, getAllTodos };
+module.exports = { createTodo, getTodoById, deleteTodo, getAllTodos };

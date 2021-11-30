@@ -3,6 +3,7 @@ const express = require("express");
 const {
   createTodo,
   getTodoById,
+  deleteTodo,
   getAllTodos,
 } = require("./../controllers/todos");
 const authentication = require("./../middlewares/authentication");
@@ -16,6 +17,7 @@ todosRouter.get("/", (req, res) => {
 
 todosRouter.post("/create", authentication, createTodo);
 todosRouter.post("/todoById", getTodoById);
+todosRouter.delete("/delete/:id", authentication, deleteTodo);
 todosRouter.get("/allTodos", authentication, authorization, getAllTodos);
 
 module.exports = todosRouter;
