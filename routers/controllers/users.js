@@ -41,6 +41,7 @@ const logIn = (req, res) => {
 
     usersModel
       .findOne({ email: savedEmail })
+      .populate("role")
       .then(async (result) => {
         if (result) {
           if (result.email === savedEmail) {

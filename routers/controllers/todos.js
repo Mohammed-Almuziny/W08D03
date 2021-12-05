@@ -27,7 +27,7 @@ const createTodo = (req, res) => {
 const getUserTodos = (req, res) => {
   try {
     todosModel
-      .find({ id: req.token.id, isDel: false })
+      .find({ ref: req.token.id, isDel: false })
       .then((result) => {
         res.status(200).json(result);
       })
