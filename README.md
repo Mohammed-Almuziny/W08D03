@@ -95,3 +95,9 @@ const todos = new mongoose.Schema({
 
 module.exports = mongoose.model("Todos", todos);
 ```
+
+## Diagrams
+
+### ER Diagrams
+
+ <img src="./ERDiagram.png" alt="ER Diagram" style="zoom:75%;" />
