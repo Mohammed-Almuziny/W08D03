@@ -64,7 +64,9 @@ todosRouter.get("/allTodos", authentication, authorization, getAllTodos); // get
 ```
 
 ## database models
-users model 
+
+users model
+
 ```
 const mongoose = require("mongoose");
 
@@ -74,7 +76,9 @@ const users = new mongoose.Schema({
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Roles" },
 });
 ```
+
 roles model
+
 ```
 const mongoose = require("mongoose");
 
@@ -83,7 +87,9 @@ const roles = new mongoose.Schema({
   permissions: { type: Array, required: true },
 });
 ```
-todos model 
+
+todos model
+
 ```
 const mongoose = require("mongoose");
 
@@ -97,6 +103,10 @@ module.exports = mongoose.model("Todos", todos);
 ```
 
 ## Diagrams
+
+### UML Diagrams
+
+ <img src="./public/UML.png" alt="UML Diagram" style="zoom:75%;" />
 
 ### ER Diagrams
 
