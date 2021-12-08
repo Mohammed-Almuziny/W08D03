@@ -106,7 +106,7 @@ module.exports = mongoose.model("Todos", todos);
 
 ### UML Diagrams
 
- <img src="./public/UML.png" alt="UML Diagram" style="zoom:75%;" />
+ <img src="./UML.png" alt="UML Diagram" style="zoom:75%;" />
 
 ### ER Diagrams
 
